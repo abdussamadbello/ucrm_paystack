@@ -1,0 +1,55 @@
+{
+    "information": {
+        "name": "paystack-gateway",
+        "displayName": "Paystack Payment Gateway",
+        "description": "Accept Paystack card, bank transfer and USSD payments for Nigerian ISPs",
+        "version": "1.0.0",
+        "author": "Open Source Community",
+        "unmsVersionCompliancy": {
+            "min": "1.4.0"
+        }
+    },
+    "configuration": [
+        {
+            "key": "pkLive",
+            "label": "Paystack Public Key (Live)",
+            "description": "Your live public key from Paystack dashboard",
+            "type": "text",
+            "required": false
+        },
+        {
+            "key": "skLive",
+            "label": "Paystack Secret Key (Live)",
+            "description": "Your live secret key from Paystack dashboard",
+            "type": "text",
+            "required": false
+        },
+        {
+            "key": "testMode",
+            "label": "Test Mode",
+            "description": "Enable test mode for development",
+            "type": "checkbox",
+            "required": false
+        }
+    ],
+    "webhooks": [
+        {
+            "method": "POST",
+            "url": "/hook/paystack",
+            "handler": "backend/Webhook.php"
+        }
+    ],
+    "backgroundJobs": [
+        {
+            "handler": "backend/CronVerify.php",
+            "interval": 5
+        }
+    ],
+    "menus": [
+        {
+            "label": "Paystack",
+            "icon": "credit-card",
+            "path": "public/index.php"
+        }
+    ]
+} 
